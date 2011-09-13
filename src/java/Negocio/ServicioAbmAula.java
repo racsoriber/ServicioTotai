@@ -33,7 +33,7 @@ public class ServicioAbmAula {
             aula.setCapacidad(capacidad);
             manejadorDatos.save(aula);
 
-            resultado = "Aula guardada : " + id;
+            resultado = "Aula guardada exitosamente : " + id;
         } else {
             resultado = "Aula duplicada : " + id;
         }
