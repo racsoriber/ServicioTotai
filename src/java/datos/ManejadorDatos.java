@@ -23,7 +23,7 @@ public class ManejadorDatos {
     }
 
     private ManejadorDatos() {
-        EntityManagerFactory managerFactory = Persistence.createEntityManagerFactory("totai3capasWebService");
+        EntityManagerFactory managerFactory = Persistence.createEntityManagerFactory("ServiciosTotai");
         entityManager = managerFactory.createEntityManager();
     }
 

@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 
 /**
  *
- * @author timoteo
+ *
  */
 @Entity
 public class Aula implements Serializable,Entidad {
