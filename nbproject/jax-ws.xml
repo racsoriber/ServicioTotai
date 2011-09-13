@@ -4,6 +4,18 @@
     <service name="ServicioAbmAula">
       <implementation-class>Negocio.ServicioAbmAula</implementation-class>
     </service>
+    <service name="ServicioAbmCurso">
+      <implementation-class>Negocio.ServicioAbmCurso</implementation-class>
+    </service>
+    <service name="ServicioAbmEdicion">
+      <implementation-class>Negocio.ServicioAbmEdicion</implementation-class>
+    </service>
+    <service name="ServicioAbmEmpleado">
+      <implementation-class>Negocio.ServicioAbmEmpleado</implementation-class>
+    </service>
+    <service name="ServicioAbmInscripcion">
+      <implementation-class>Negocio.ServicioAbmInscripcion</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>

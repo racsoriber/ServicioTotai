@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author timoteo
+ * @author oscar
  */
 public class ManejadorDatos {
 

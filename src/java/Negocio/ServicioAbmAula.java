@@ -61,4 +61,20 @@ public class ServicioAbmAula {
         }
         return resultado;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "delAula")
+    public String delAula(@WebParam(name = "id") String id) {
+        String resultado;
+        Aula aula = manejadorDatos.getById(Aula.class, id);
+        if (aula.getEdiciones().isEmpty()) {
+            manejadorDatos.delete(aula);
+            resultado = "Aula eliminada : " + id;
+        } else {
+            resultado = "El aula no se puede eliminar, tiene [" + aula.getEdiciones().size() + "] ediciones activas";
+        }
+        return resultado;
+    }
 }
