@@ -16,6 +16,9 @@
     <service name="ServicioAbmInscripcion">
       <implementation-class>Negocio.ServicioAbmInscripcion</implementation-class>
     </service>
+    <service name="ServicioDia">
+      <implementation-class>Negocio.ServicioDia</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>

@@ -78,42 +78,6 @@ public class ServicioAbmInscripcion {
     }
 
     //METODOS AUXILIARES
-    public void eliminarByEmpleado(Empleado empleado) {
-        List<Inscripcion> inscripciones = getInscripciones(empleado);
-
-        for (Inscripcion item : inscripciones) {
-            manejadorDatos.delete(item);
-        }
-    }
-
-    public List<Inscripcion> getInscripciones(Empleado empleado) {
-        List<Inscripcion> inscripciones = manejadorDatos.list(Inscripcion.class, " WHERE t.inscripcionPK.idAlumno = " + empleado.getCi());
-        return inscripciones;
-    }
-
-    public List<Object[]> getNoInscritos(String edicion) {
-        List<Empleado> noInscritos;
-        if (edicion.isEmpty()) {
-            noInscritos = manejadorDatos.list(Empleado.class);
-        } else {
-            noInscritos = manejadorDatos.list("SELECT e FROM Empleado e "
-                    + "WHERE e.ci NOT IN (SELECT i.inscripcionPK.idAlumno from Inscripcion i WHERE i.inscripcionPK.idEdicion = '" + edicion + "') "
-                    + "AND e.ci NOT IN (SELECT ed.docente.ci FROM Edicion ed WHERE ed.id='" + edicion + "' )");
-        }
-        return Utils.toArrayList(noInscritos);
-
-    }
-
-    public List<Object[]> getInscripciones(String edicion) {
-        List<Inscripcion> inscripciones;
-        if (edicion.isEmpty()) {
-            inscripciones = manejadorDatos.list(Inscripcion.class);
-        } else {
-            inscripciones = manejadorDatos.list(Inscripcion.class, " WHERE t.inscripcionPK.idEdicion = '" + edicion + "'");
-        }
-        return Utils.toArrayList(inscripciones);
-    }
-
     private Inscripcion getInscripcion(String idEdicion, Integer idAlumno) {
         List<Inscripcion> inscripciones = manejadorDatos.list(Inscripcion.class, " WHERE t.inscripcionPK.idEdicion = '" + idEdicion + "' AND t.inscripcionPK.idAlumno = " + idAlumno);
         Inscripcion inscripcion = null;
@@ -128,5 +92,38 @@ public class ServicioAbmInscripcion {
         List<Empleado> docentes = manejadorDatos.list("SELECT e FROM Empleado e "
                 + "WHERE e.ci = " + idAlumno + " AND e.ci IN (SELECT ed.docente.ci FROM Edicion ed WHERE ed.id='" + idEdicion + "' )");
         return !docentes.isEmpty();
+    }
+    public void eliminarByEmpleado(Empleado empleado) {
+        List<Inscripcion> inscripciones = getInscripciones(empleado);
+
+        for (Inscripcion item : inscripciones) {
+            manejadorDatos.delete(item);
+        }
+    }
+
+    List<Inscripcion> getInscripciones(Empleado empleado) {
+        List<Inscripcion> inscripciones = manejadorDatos.list(Inscripcion.class, " WHERE t.inscripcionPK.idAlumno = " + empleado.getCi());
+        return inscripciones;
+    }
+    public List<Object[]> getNoInscritos(String edicion) {
+        List<Empleado> noInscritos;
+        if (edicion.isEmpty()) {
+            noInscritos = manejadorDatos.list(Empleado.class);
+        } else {
+            noInscritos = manejadorDatos.list("SELECT e FROM Empleado e "
+                    + "WHERE e.ci NOT IN (SELECT i.inscripcionPK.idAlumno from Inscripcion i WHERE i.inscripcionPK.idEdicion = '" + edicion + "') "
+                    + "AND e.ci NOT IN (SELECT ed.docente.ci FROM Edicion ed WHERE ed.id='" + edicion + "' )");
+        }
+        return Utils.toArrayList(noInscritos);
+    }
+
+    public List<Object[]> getInscripciones(String edicion) {
+        List<Inscripcion> inscripciones;
+        if (edicion.isEmpty()) {
+            inscripciones = manejadorDatos.list(Inscripcion.class);
+        } else {
+            inscripciones = manejadorDatos.list(Inscripcion.class, " WHERE t.inscripcionPK.idEdicion = '" + edicion + "'");
+        }
+        return Utils.toArrayList(inscripciones);
     }
 }

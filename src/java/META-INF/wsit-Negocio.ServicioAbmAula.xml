@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <definitions 
+ xmlns="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="ServicioAbmAula" targetNamespace="http://Negocio/" xmlns:tns="http://Negocio/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsrm="http://docs.oasis-open.org/ws-rx/wsrmp/200702" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sc="http://schemas.sun.com/2006/03/wss/server" xmlns:wspp="http://java.sun.com/xml/ns/wsit/policy" xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" 
+ >
+    <message name="addAula"/>
+    <message name="addAulaResponse"/>
+    <message name="modificarAula"/>
+    <message name="modificarAulaResponse"/>
+    <message name="delAula"/>
+    <message name="delAulaResponse"/>
+    <message name="getAulas"/>
+    <message name="getAulasResponse"/>
+    <portType name="ServicioAbmAula">
+        <operation name="addAula">
+            <input message="tns:addAula"/>
+            <output message="tns:addAulaResponse"/>
+        </operation>
+        <operation name="modificarAula">
+            <input message="tns:modificarAula"/>
+            <output message="tns:modificarAulaResponse"/>
+        </operation>
+        <operation name="delAula">
+            <input message="tns:delAula"/>
+            <output message="tns:delAulaResponse"/>
+        </operation>
+        <operation name="getAulas">
+            <input message="tns:getAulas"/>
+            <output message="tns:getAulasResponse"/>
+        </operation>
+    </portType>
+    <binding name="ServicioAbmAulaPortBinding" type="tns:ServicioAbmAula">
+        <operation name="addAula">
+            <input></input>
+            <output></output>
+        </operation>
+        <operation name="modificarAula">
+            <input></input>
+            <output></output>
+        </operation>
+        <operation name="delAula">
+            <input></input>
+            <output></output>
+        </operation>
+        <operation name="getAulas">
+            <input></input>
+            <output></output>
+        </operation>
+    </binding>
+    <service name="ServicioAbmAula">
+        <port name="ServicioAbmAulaPort" binding="tns:ServicioAbmAulaPortBinding"/>
+    </service>
+</definitions>

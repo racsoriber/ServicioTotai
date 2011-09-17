@@ -6,7 +6,9 @@ package Negocio;
 
 import java.util.List;
 import datos.Aula;
+import datos.AulaDto;
 import datos.ManejadorDatos;
+import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -37,12 +39,8 @@ public class ServicioAbmAula {
         } else {
             resultado = "Aula duplicada : " + id;
         }
+        System.out.println("Resultado addAula:" + resultado);
         return resultado;
-    }
-
-    //Metodos Utiles para el Negocio (No son Servicios propiamente dicho)
-    public List<Object[]> getAulas() {
-        return Utils.toArrayList(manejadorDatos.list(Aula.class));
     }
 
     /**
@@ -76,5 +74,18 @@ public class ServicioAbmAula {
             resultado = "El aula no se puede eliminar, tiene [" + aula.getEdiciones().size() + "] ediciones activas";
         }
         return resultado;
+    }
+    //return Utils.toArrayList(manejadorDatos.list(Aula.class));
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "getAulas")
+    public java.util.List<String> getAulas() {
+        java.util.List<String> result = new ArrayList<String>();
+        for (Aula aula : manejadorDatos.list(Aula.class)) {
+            result.add(aula.getId() + "," + aula.getCapacidad());
+        }
+        return result;
     }
 }
